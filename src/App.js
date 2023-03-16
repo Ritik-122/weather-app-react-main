@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
+  useEffect(() => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=delhi&units=imperial&appid=3d337fc778bd984d4643537e246b39c7`
+    
+      axios.get(url).then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      setLocation('')
+    
+  
+  }, [])
+  
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=3d337fc778bd984d4643537e246b39c7`
 
